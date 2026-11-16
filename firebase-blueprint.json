@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "LeaderboardEntry": {
+      "title": "LeaderboardEntry",
+      "description": "Public career stats and ranking entry for a street football player, derived from goals and successful dribbles.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the player.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "playerName": {
+          "type": "string",
+          "description": "Public display nickname shown on the global leaderboard.",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "jerseyColor": {
+          "type": "string",
+          "description": "Hex color of the player's jersey.",
+          "minLength": 7,
+          "maxLength": 7,
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "bootColor": {
+          "type": "string",
+          "description": "Hex color of the player's boots.",
+          "minLength": 7,
+          "maxLength": 7,
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "totalScore": {
+          "type": "integer",
+          "description": "Total career points derived from goals (400 pts), ankle-breakers (250 pts), and pannas (350 pts)."
+        },
+        "goalsScored": {
+          "type": "integer",
+          "description": "Cumulative goals scored by the player."
+        },
+        "dribblesLanded": {
+          "type": "integer",
+          "description": "Cumulative successful dribbles (ankle-breakers + pannas)."
+        },
+        "ankleBreakers": {
+          "type": "integer",
+          "description": "Cumulative ankle-breaker dribbles landed."
+        },
+        "pannas": {
+          "type": "integer",
+          "description": "Cumulative panna nutmeg dribbles landed."
+        },
+        "matchesPlayed": {
+          "type": "integer",
+          "description": "Total matches completed by the player."
+        },
+        "wins": {
+          "type": "integer",
+          "description": "Total matches won by the player."
+        },
+        "bestMatchScore": {
+          "type": "integer",
+          "description": "Highest points earned in a single match."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the leaderboard entry was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the leaderboard entry was last updated."
+        }
+      },
+      "required": [
+        "uid",
+        "playerName",
+        "jerseyColor",
+        "bootColor",
+        "totalScore",
+        "goalsScored",
+        "dribblesLanded",
+        "ankleBreakers",
+        "pannas",
+        "matchesPlayed",
+        "wins",
+        "bestMatchScore",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/leaderboard/{playerId}": {
+      "schema": {
+        "$ref": "#/entities/LeaderboardEntry"
+      },
+      "description": "Global leaderboard rankings ordered by totalScore descending. Keyed by the authenticated user's UID."
+    }
+  }
+}

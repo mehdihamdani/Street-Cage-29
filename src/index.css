@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #080c14;
+    font-family: "Cairo", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    touch-action: none;
+  }
+}
+
+.font-display {
+  font-family: "Cairo", "Chakra Petch", sans-serif;
+}
+
+.font-athletic {
+  font-family: "Chakra Petch", "Cairo", sans-serif;
+}
+
+.font-num {
+  font-family: "JetBrains Mono", "Chakra Petch", monospace;
+  font-variant-numeric: tabular-nums;
+}
